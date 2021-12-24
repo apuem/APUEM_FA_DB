@@ -15,7 +15,7 @@ app.use(bodyParser.text({ type: "text/html" }));
 
 app.get("/", async (req, res) => {
   const { rows } = await pool.query("SELECT * from a_data");
-  res.send(`Hello, World! The time from the DB is ${rows[0]}`);
+  res.send(`Hello, World! The time from the DB is ${rows[0].name}`);
 });
 
 app.listen(port, () => {
