@@ -15,12 +15,17 @@ app.use(bodyParser.text({ type: "text/html" }));
 
 app.get("/", async (req, res) => {
   const { rows } = await pool.query("SELECT * from a_data");
-  res.send(`Hello, World! The time from the DB is ${rows[0].name}`);
+  res.send(`Please provide additional data to access the database.`);
 });
 
-app.get("/:row", async (req, res) => {
+app.get("/:row/name", async (req, res) => {
   const { rows } = await pool.query("SELECT * from a_data");
-  res.send(`Hello, World! The time from the DB is ${rows[parseInt(req.params.row)].name}`);
+  res.send(`${rows[parseInt(req.params.row)].name}`);
+  });
+
+app.get("/:row/url", async (req, res) => {
+  const { rows } = await pool.query("SELECT * from a_data");
+  res.send(`${rows[parseInt(req.params.row)].url}`);
   });
 
 app.listen(port, () => {
