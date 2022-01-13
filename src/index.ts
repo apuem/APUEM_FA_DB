@@ -18,9 +18,9 @@ app.get("/", async (req, res) => {
   res.send(`Hello, World! The time from the DB is ${rows[0].name}`);
 });
 
-app.get("/up", async (req, res) => {
+app.get("/:row", async (req, res) => {
   const { rows } = await pool.query("SELECT * from a_data");
-  res.send(`Hello, World! The time from the DB is ${rows[0].id}`);
+  res.send(`Hello, World! The time from the DB is ${rows[req.params.row].name}`);
   });
 
 app.listen(port, () => {
