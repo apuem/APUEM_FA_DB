@@ -30,7 +30,7 @@ app.get("/:row/url", async (req, res) => {
 
 app.get("/test", async (req, res) => {
   const { rows } = await pool.query("SELECT * from a_data WHERE name='jk'");
-  res.send(`${rows[parseInt(req.params.row)].url}`);
+  res.send(`${rows[0].url}`);
   });
 
 app.listen(port, () => {
