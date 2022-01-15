@@ -12,7 +12,8 @@ const port = process.env.PORT || 3333;
 
 var corsOptions = {
   origin: '*',
-  optionsSuccessStatus: 200
+  optionsSuccessStatus: 200,
+  preflightContinue: true
 }
 
 app.use(bodyParser.json());
