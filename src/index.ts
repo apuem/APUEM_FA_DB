@@ -25,7 +25,12 @@ app.get("/:row/name", async (req, res) => {
 
 app.get("/:row/url", async (req, res) => {
   const { rows } = await pool.query("SELECT * from a_data");
-  res.json(`${rows[parseInt(req.params.row)].url}`);
+  res.send(`${rows[parseInt(req.params.row)].url}`);
+  });
+
+app.get("/test", async (req, res) => {
+  const { rows } = await pool.query("SELECT * from a_data WHERE name='jk'");
+  res.send(`${rows[parseInt(req.params.row)].url}`);
   });
 
 app.listen(port, () => {
