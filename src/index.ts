@@ -1,5 +1,6 @@
 import bodyParser from "body-parser";
 import express from "express";
+var cors = require('cors');
 import pg from "pg";
 
 // Connect to the database using the DATABASE_URL environment
@@ -12,6 +13,7 @@ const port = process.env.PORT || 3333;
 app.use(bodyParser.json());
 app.use(bodyParser.raw({ type: "application/vnd.custom-type" }));
 app.use(bodyParser.text({ type: "text/html" }));
+app.use(cors());
 
 app.get("/", async (req, res) => {
   const { rows } = await pool.query("SELECT * from a_data");
