@@ -28,7 +28,7 @@ app.get("/:row/url", async (req, res) => {
   res.send(`${rows[parseInt(req.params.row)].url}`);
   });
 
-app.get("/test/:name", async (req, res) => {
+app.get("/ubn/:name", async (req, res) => { // UBN = Url By Name
   const { rows } = await pool.query("SELECT * from a_data WHERE name=$1", [req.params.name]);
   res.json(`${rows[0].url}`);
   });
