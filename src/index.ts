@@ -28,8 +28,8 @@ app.get("/:row/url", async (req, res) => {
   res.send(`${rows[parseInt(req.params.row)].url}`);
   });
 
-app.get("/test", async (req, res) => {
-  const { rows } = await pool.query("SELECT * from a_data WHERE name='jk'");
+app.get("/test/:name", async (req, res) => {
+  const { rows } = await pool.query("SELECT * from a_data WHERE name=$1", [req.params.name]);
   res.send(`${rows[0].url}`);
   });
 
