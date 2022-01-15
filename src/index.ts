@@ -10,6 +10,11 @@ const pool = new pg.Pool();
 const app = express();
 const port = process.env.PORT || 3333;
 
+var corsOptions = {
+  origin: 'http://127.0.0.1/',
+  optionsSuccessStatus: 200
+}
+
 app.use(bodyParser.json());
 app.use(bodyParser.raw({ type: "application/vnd.custom-type" }));
 app.use(bodyParser.text({ type: "text/html" }));
@@ -30,7 +35,7 @@ app.get("/:row/url", async (req, res) => {
   res.send(`${rows[parseInt(req.params.row)].url}`);
   });
 
-app.get("/ubn/:name", async (req, res) => { // UBN = Url By Name
+app.get("/ubn/:name", cors(corsOptions), async (req, res) => { // UBN = Url By Name
   const { rows } = await pool.query("SELECT * from a_data WHERE name=$1", [req.params.name]);
   res.json(`${rows[0].url}`);
   });
